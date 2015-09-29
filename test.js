@@ -24,6 +24,9 @@ describe('card game', function () {
       suit: '♦',
       rank: '5'
     }, {
+      suit: '♥',
+      rank: '5'
+    }, {
       suit: '♣',
       rank: 'K'
     }, {
@@ -72,7 +75,7 @@ describe('card game', function () {
     });
 
     it('returns the rank numbers in order', function () {
-      expect(getRanksFilterBySuit(this.result, '♦')).toEqual(['4', '5', '6', '9']);
+      expect(getRanksFilterBySuit(this.result, '♦')).toEqual(['4', '5', '8', '9']);
     });
 
     it('returns rank ace before two', function () {
@@ -88,28 +91,28 @@ describe('card game', function () {
     });
 
     it('returns the same number as given', function () {
-      expect(this.result.count).toBe(this.cards.length);
+      expect(this.result.length).toBe(this.cards.length);
     });
 
     it('includes all the cards', function () {
       this.cards.forEach(function (card) {
         expect(this.result).toContain(card);
-      });
+      }.bind(this));
     });
 
     function getRanksFilterBySuit(cards, suit) {
       return cards.filter(function (card) {
         return card.suit === suit;
       }).map(function (card) {
-        return card.suit;
+        return card.rank;
       });
     }
 
     function getSuitsInOrderTheyAppear(cards) {
       var suits = [];
-      for (var i in result) {
-        if (result[i - 1].suit !== result[i].suit) {
-          suits.push(result[i].suit);
+      for (var i in cards) {
+        if ((cards[i - 1] || {}).suit !== cards[i].suit) {
+          suits.push(cards[i].suit);
         }
       }
       return suits;
