@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/bryzaguy/card-game/issues"
   },
-  "homepage": "https://github.com/bryzaguy/card-game#readme"
+  "homepage": "https://github.com/bryzaguy/card-game#readme",
+  "devDependencies": {
+    "eslint": "^1.5.1"
+  }
 }
