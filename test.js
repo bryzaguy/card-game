@@ -40,7 +40,7 @@ describe('card game', function () {
 
   describe('function: shuffle', function () {
     beforeEach(function () {
-      this.result = shuffle(this.cards);
+      this.result = shuffle(this.cards.slice());
     });
 
     it('returns cards in a different order', function () {
@@ -52,19 +52,19 @@ describe('card game', function () {
     });
 
     it('returns the same number as given', function () {
-      expect(this.result.count).toBe(this.cards.length);
+      expect(this.result.length).toBe(this.cards.length);
     });
 
     it('includes all the cards', function () {
       this.cards.forEach(function (card) {
         expect(this.result).toContain(card);
-      });
+      }.bind(this));
     });
   });
 
   describe('function: sortAscending', function () {
     beforeEach(function () {
-      this.result = sortAscending(this.cards);
+      this.result = sortAscending(this.cards.slice());
     });
 
     it('returns cards grouped by suits ♠, ♣, ♥ then ♦', function () {
